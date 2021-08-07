@@ -1,0 +1,46 @@
+.containerForm {
+  min-height: 80vh;
+  height: 80vh;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-items: center;
+  justify-content: center;
+}
+
+.formHead {
+  margin: 2rem 2rem 3rem;
+}
+
+.formGroup {
+  display: flex;
+  margin: 2rem 0.5rem 2rem;
+  flex-direction: column;
+  label {
+    margin: 0 0 1rem;
+  }
+}
+
+.input{
+  padding: 0.5rem 1rem;
+  color: white;
+  border-radius: 0.5rem;
+  background-color: rgb(49, 46, 46);
+  border: 1px solid rgb(42, 42, 42);
+  box-sizing: border-box;
+
+  &:hover,
+  &:focus,
+  &:active {
+    outline: none;
+    border-color: #7a0000;
+  }
+ 
+}
+
+@media (max-width: 520px) {
+  .containerForm {
+    min-height: 60vh;
+    height: 60vh;
+  }
+}

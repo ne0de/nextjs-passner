@@ -3,8 +3,8 @@ import styles from "../styles/Home.module.scss";
 
 export default function Home() {
   return (
-    <div className={styles.container}>
-      <main className={styles.main}>
+    <div className="container">
+      <main className="main">
         <div>
           <h1 className="title">Bienvenid@ a Passner!</h1>
 
