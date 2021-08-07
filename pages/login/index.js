@@ -1,6 +1,23 @@
 import styles from "../../styles/Form.module.scss";
 
+import { onAuthStateChanged, githubLogin } from "../../firebase/client";
+import { useEffect, useState } from "react";
+
 const Login = () => {
+  const [user, setUser] = useState(undefined);
+
+  useEffect(() => {
+    onAuthStateChanged(setUser);
+  }, []);
+
+  const handleClickGitHub = () => {
+    githubLogin()
+      .then(setUser)
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className={styles.containerForm}>
       <form>
@@ -33,9 +50,20 @@ const Login = () => {
           </button>
         </div>
         <div className={styles.formGroup}>
-          <button className="smallBtn" type="button">
-            Iniciar con Github
-          </button>
+          {user == null && (
+            <button
+              className="smallBtn"
+              type="button"
+              onClick={handleClickGitHub}
+            >
+              Iniciar con Github
+            </button>
+          )}
+          {user && user.email && (
+            <div>
+              <h1>{user.email}</h1>
+            </div>
+          )}
         </div>
       </form>
     </div>
