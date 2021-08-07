@@ -1,6 +1,6 @@
-import styles from "../../styles/Form.module.scss";
+import styles from "../../styles/Form.module.scss"
 
-import { onAuthStateChanged, githubLogin } from "../../firebase/client";
+import { onAuthStateChanged, githubLogin } from "../../firebase/client"
 import { useEffect, useState } from "react";
 
 const Login = () => {
