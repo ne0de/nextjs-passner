@@ -1,22 +1,23 @@
 import styles from "../../styles/Form.module.scss"
 
-import { onAuthStateChanged, githubLogin } from "../../firebase/client"
-import { useEffect, useState } from "react"
-import Avatar from "../../components/Avatar"
+import { useEffect } from "react"
+import { useRouter } from "next/router"
+import { githubLogin } from "../../firebase/client"
+
+import useUser from "../../hooks/useUser"
 
 const Login = () => {
-  const [user, setUser] = useState(undefined)
+  const router = useRouter()
+  const user = useUser()
 
   useEffect(() => {
-    onAuthStateChanged(setUser)
-  }, [])
+    user && router.replace("/")
+  }, [user])
 
   const handleClickGitHub = () => {
-    githubLogin()
-      .then(setUser)
-      .catch((err) => {
-        console.log(err)
-      })
+    githubLogin().catch((err) => {
+      console.log(err)
+    })
   }
 
   return (
@@ -60,11 +61,7 @@ const Login = () => {
               Iniciar con Github
             </button>
           )}
-          {user && user.email && (
-            <div>
-              <Avatar src={user.photoURL} alt={user.email} />
-            </div>
-          )}
+          {user === undefined && <h1 className="title">Cargando..</h1>}
         </div>
       </form>
     </div>

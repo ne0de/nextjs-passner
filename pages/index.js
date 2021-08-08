@@ -1,7 +1,10 @@
 import Link from "next/link"
 import styles from "../styles/Home.module.scss"
+import useUser from "../hooks/useUser"
 
 export default function Home() {
+  const user = useUser()
+
   return (
     <div className="container">
       <main className="main">
@@ -15,17 +18,20 @@ export default function Home() {
         </div>
 
         <div className={styles.grid}>
-          <a className={styles.card}>
-            <Link href="/register">
-              <h2>Crear cuenta</h2>
-            </Link>
-          </a>
-
-          <a className={styles.card}>
-            <Link href="/login">
-              <h2>Iniciar sesión</h2>
-            </Link>
-          </a>
+          {user === null && (
+            <>
+              <a className={styles.card}>
+                <Link href="/register">
+                  <h2>Crear cuenta</h2>
+                </Link>
+              </a>
+              <a className={styles.card}>
+                <Link href="/login">
+                  <h2>Iniciar sesión</h2>
+                </Link>
+              </a>
+            </>
+          )}
         </div>
       </main>
     </div>
