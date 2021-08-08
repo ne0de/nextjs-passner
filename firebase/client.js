@@ -13,6 +13,8 @@ const firebaseConfig = {
 
 !firebase.apps.length && firebase.initializeApp(firebaseConfig)
 
+//const database = firebase.firestore
+
 const mapUserFromFirebaseAuth = (user) => {
   const { emailVerified, isAnonymous, providerData } = user
   providerData[0]["isAnonymous"] = isAnonymous
@@ -27,10 +29,17 @@ export const onAuthStateChanged = (onChange) => {
   })
 }
 
-export const githubLogin = () => {
-  return firebase.default
+export const onUserSignOut = () => {
+  return firebase
     .auth()
-    .signInWithPopup(
-      new firebase.auth.GithubAuthProvider().addScope("client_id")
-    )
+    .signOut()
+    .then(() => {
+      console.log("Usuario deslogeado correctamente")
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
+export const githubLogin = () => {
+  return firebase.auth().signInWithPopup(new firebase.auth.GithubAuthProvider())
 }
