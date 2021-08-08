@@ -14,17 +14,16 @@ const firebaseConfig = {
 !firebase.apps.length && firebase.initializeApp(firebaseConfig)
 
 const mapUserFromFirebaseAuth = (user) => {
-  const { email, photoURL } = user
-  console.log(user)
-  return {
-    avatar: photoURL,
-    email,
-  }
+  const { emailVerified, isAnonymous, providerData } = user
+  providerData[0]["isAnonymous"] = isAnonymous
+  providerData[0]["emailVerified"] = emailVerified
+  return providerData[0]
 }
 
 export const onAuthStateChanged = (onChange) => {
   return firebase.auth().onAuthStateChanged((user) => {
     const normalizedUser = mapUserFromFirebaseAuth(user)
+    console.log(normalizedUser)
     onChange(normalizedUser)
   })
 }
@@ -32,5 +31,7 @@ export const onAuthStateChanged = (onChange) => {
 export const githubLogin = () => {
   return firebase.default
     .auth()
-    .signInWithPopup(new firebase.auth.GithubAuthProvider())
+    .signInWithPopup(
+      new firebase.auth.GithubAuthProvider().addScope("client_id")
+    )
 }

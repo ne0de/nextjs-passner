@@ -2,6 +2,7 @@ import styles from "../../styles/Form.module.scss"
 
 import { onAuthStateChanged, githubLogin } from "../../firebase/client"
 import { useEffect, useState } from "react"
+import Avatar from "../../components/Avatar"
 
 const Login = () => {
   const [user, setUser] = useState(undefined)
@@ -61,7 +62,7 @@ const Login = () => {
           )}
           {user && user.email && (
             <div>
-              <h1>{user.email}</h1>
+              <Avatar src={user.photoURL} alt={user.email} />
             </div>
           )}
         </div>
