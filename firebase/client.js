@@ -22,9 +22,9 @@ const mapUserFromFirebaseAuth = (user) => {
 
 export const onAuthStateChanged = (onChange) => {
   return firebase.auth().onAuthStateChanged((user) => {
-    const normalizedUser = mapUserFromFirebaseAuth(user)
-    console.log(normalizedUser)
-    onChange(normalizedUser)
+    const normalizedUser = user
+      ? mapUserFromFirebaseAuth(user)
+      : onChange(normalizedUser)
   })
 }
 
