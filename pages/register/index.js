@@ -4,6 +4,6 @@ const Register = () => {
       <h2>Estamos trabajando en ello.</h2>
     </div>
   )
-};
+}
 
-export default Register;
+export default Register
