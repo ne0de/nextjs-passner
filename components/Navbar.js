@@ -17,7 +17,7 @@ const Navbar = () => {
     <nav className={styles.menu}>
       <div className={styles.menu__toggle} />
       {user === undefined ? (
-        <div class="spinner" />
+        <div className="spinner" />
       ) : (
         <>
           <header className={styles.menu__avatar}>
