@@ -65,7 +65,7 @@ const Login = () => {
               <button
                 className="smallBtn"
                 type="button"
-                onClick={handleClickGoogle}
+                onClick={}
               >
                 Iniciar con Google
               </button>
