@@ -1,11 +1,13 @@
 .containerForm {
-  min-height: 80vh;
-  height: 80vh;
-  display: flex;
+
+  display: flex;;
   flex-wrap: wrap;
   flex-direction: row;
   justify-items: center;
   justify-content: center;
+  p{
+    text-align: center;
+  }
 }
 
 .formHead {
@@ -13,6 +15,8 @@
 }
 
 .formGroup {
+  justify-content: center;
+  align-items: center;
   display: flex;
   margin: 2rem 0.5rem 2rem;
   flex-direction: column;
@@ -39,8 +43,4 @@
 }
 
 @media (max-width: 520px) {
-  .containerForm {
-    min-height: 60vh;
-    height: 60vh;
-  }
 }

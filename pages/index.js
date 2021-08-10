@@ -18,6 +18,11 @@ export default function Home() {
         </div>
 
         <div className={styles.grid}>
+          {user === undefined && (
+            <a>
+              <h2>Cargando..</h2>
+            </a>
+          )}
           {user === null && (
             <>
               <a className={styles.card}>
@@ -33,6 +38,18 @@ export default function Home() {
             </>
           )}
         </div>
+        {user && (
+          <>
+            <p className="description">
+              Comienza a gestionar tus contraseñas yendo al panel de control.
+            </p>
+            <a className={styles.card}>
+              <Link href="/dashboard">
+                <h2>Panel de control</h2>
+              </Link>
+            </a>
+          </>
+        )}
       </main>
     </div>
   )

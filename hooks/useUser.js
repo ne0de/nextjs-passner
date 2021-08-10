@@ -4,9 +4,13 @@ import { onAuthStateChanged } from "../firebase/client"
 
 export default function useUser() {
   const [user, setUser] = useState(undefined)
+  const [loading, setLoading] = useState(false)
 
-  useEffect(() => {
-    onAuthStateChanged(setUser)
+  useEffect(async () => {
+    if (!loading) {
+      setLoading(true)
+      return await onAuthStateChanged(setUser, setLoading)
+    }
   }, [])
 
   /* if user state is not logged

@@ -22,37 +22,38 @@ const Login = () => {
 
   return (
     <div className={styles.containerForm}>
-      <form>
-        <div className={styles.formHead}>
-          <h1 className="description">Iniciar sesión</h1>
-        </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="username">Nombre de usuario</label>
-          <input
-            name="username"
-            className={styles.input}
-            type="text"
-            required
-            autoComplete="name"
-          />
-        </div>
-        <div className={styles.formGroup}>
-          <label htmlFor="password">Contraseña</label>
-          <input
-            className={styles.input}
-            name="password"
-            type="password"
-            required
-            autoComplete="password"
-          />
-        </div>
-        <div className={styles.formGroup}>
-          <button className="smallBtn" type="submit">
-            Iniciar sesión
-          </button>
-        </div>
-        <div className={styles.formGroup}>
-          {user == null && (
+      {user === undefined && <h1 className="description">Cargando..</h1>}
+      {user === null && (
+        <form>
+          <div className={styles.formHead}>
+            <h1 className="description">Iniciar sesión</h1>
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="username">Nombre de usuario</label>
+            <input
+              name="username"
+              className={styles.input}
+              type="text"
+              required
+              autoComplete="name"
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <label htmlFor="password">Contraseña</label>
+            <input
+              className={styles.input}
+              name="password"
+              type="password"
+              required
+              autoComplete="password"
+            />
+          </div>
+          <div className={styles.formGroup}>
+            <button className="smallBtn" type="submit">
+              Iniciar sesión
+            </button>
+          </div>
+          <div className={styles.formGroup}>
             <button
               className="smallBtn"
               type="button"
@@ -60,10 +61,24 @@ const Login = () => {
             >
               Iniciar con Github
             </button>
-          )}
-          {user === undefined && <h1 className="title">Cargando..</h1>}
-        </div>
-      </form>
+            <div className={styles.formGroup}>
+              <button
+                className="smallBtn"
+                type="button"
+                onClick={handleClickGoogle}
+              >
+                Iniciar con Google
+              </button>
+            </div>
+            <div className={styles.formGroup}>
+              <p>
+                Tenga en cuenta que solamente se accederá a los datos publicos
+                de su cuenta para fines de desarrollo.
+              </p>
+            </div>
+          </div>
+        </form>
+      )}
     </div>
   )
 }

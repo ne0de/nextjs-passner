@@ -1,5 +1,6 @@
 import firebase from "firebase/app"
 import "firebase/auth"
+import "firebase/firestore"
 
 const firebaseConfig = {
   apiKey: "AIzaSyDHCiLu3rT9tqofmNgXnkj8808iPVfHULI",
@@ -13,8 +14,6 @@ const firebaseConfig = {
 
 !firebase.apps.length && firebase.initializeApp(firebaseConfig)
 
-//const database = firebase.firestore
-
 const mapUserFromFirebaseAuth = (user) => {
   const { emailVerified, isAnonymous, providerData } = user
   providerData[0]["isAnonymous"] = isAnonymous
@@ -22,9 +21,10 @@ const mapUserFromFirebaseAuth = (user) => {
   return providerData[0]
 }
 
-export const onAuthStateChanged = (onChange) => {
+export const onAuthStateChanged = (onChange, setLoading) => {
   return firebase.auth().onAuthStateChanged((user) => {
     const normalizedUser = user ? mapUserFromFirebaseAuth(user) : null
+    setLoading(false)
     onChange(normalizedUser)
   })
 }
@@ -40,6 +40,9 @@ export const onUserSignOut = () => {
       console.log(err)
     })
 }
+
 export const githubLogin = () => {
-  return firebase.auth().signInWithPopup(new firebase.auth.GithubAuthProvider())
+  return firebase
+    .auth()
+    .signInWithRedirect(new firebase.auth.GithubAuthProvider())
 }
