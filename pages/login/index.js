@@ -62,11 +62,7 @@ const Login = () => {
               Iniciar con Github
             </button>
             <div className={styles.formGroup}>
-              <button
-                className="smallBtn"
-                type="button"
-                onClick={}
-              >
+              <button className="smallBtn" type="button">
                 Iniciar con Google
               </button>
             </div>
