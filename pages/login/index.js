@@ -22,7 +22,7 @@ const Login = () => {
 
   return (
     <div className={styles.containerForm}>
-      {user === undefined && <h1 className="description">Cargando..</h1>}
+      {user === undefined && <h1 className="spinner"></h1>}
       {user === null && (
         <form>
           <div className={styles.formHead}>

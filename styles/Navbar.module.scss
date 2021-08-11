@@ -1,53 +1,74 @@
-$primary-color:#420000;
+.hamburguer {
+  top: 0;
+  left: 0;
+  font-size: 24px;
+  padding: 1em;
+  &:hover {
+    cursor: pointer;
+  }
+}
 
-.menu{
-    background-color: $primary-color;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    width: 240px;
+.menu {
+  height: 100vh;
+  width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgb(27, 0, 0);
+  overflow-x: hidden;
+  padding-top: 80px;
+  transition: 0.15s;
+
+  .closebtn {
+    position: absolute;
     top: 0;
-    left: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+}
 
-    .menu__avatar{
-        padding: 2em 0.5em;
-        text-align: center;
-        img{
-            border-radius: 50%;
-            overflow: hidden;
-            box-shadow:0 0 0 0.2rem white;
-        }
-        
-        h2{
-            font-weight:normal;
-			margin-bottom:0;
-        }
-    }
+.menu__avatar {
+  padding: 2em 0.8em;
+  text-align: center;
+  img {
+    border-radius: 50%;
+  }
 
-    .menu__navigation{
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        li{
-            flex-grow: 1;
-            list-style: none;
-        }
-        a{
-            display: block;
-            padding: 1em;
-            text-align: center;
-            margin-bottom: 0.2em;
-            text-decoration: none;
-            color:white;
-            width: 100%;
-            &:hover{
-                cursor: pointer;
-                color: black;
-                background-color: white;
-            }
-        }
+  h2 {
+    font-weight: normal;
+    margin-bottom: 0;
+  }
+}
+
+.menu__links {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+
+  a {
+    padding: 1em;
+    text-decoration: none;
+    font-size: 25px;
+    color: #a5a5a5;
+    font-weight: 400;
+    display: block;
+    transition: 0.15s;
+
+    &:hover {
+      color: #f1f1f1;
+      background-color: black;
     }
+  }
+}
+
+@media screen and (max-height: 736px) {
+  .menu {
+    a {
+      font-size: 18px;
+    }
+  }
 }

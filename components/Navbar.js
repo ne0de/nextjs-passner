@@ -3,54 +3,61 @@ import useUser from "../hooks/useUser"
 import { onUserSignOut } from "../firebase/client"
 import { addUser } from "../firebase/client"
 import styles from "../styles/Navbar.module.scss"
+import { useState } from "react"
 
 const Navbar = () => {
   const user = useUser()
+  const [toggleMenu, setToggleMenu] = useState(true)
 
-  const handleSave = (e) => {
-    e.preventDefault()
-    addUser(user)
+  const handleMenu = () => {
+    const menu = document.getElementById("menu")
+    toggleMenu ? (menu.style.width = "300px") : (menu.style.width = "0px")
+    console.log("Hola")
+    setToggleMenu(!toggleMenu)
   }
-  console.log(user)
 
   return (
-    <nav className={styles.menu}>
-      <div className={styles.menu__toggle} />
-      {user === undefined ? (
-        <div className="spinner" />
-      ) : (
-        <>
-          <header className={styles.menu__avatar}>
-            {user ? (
-              <>
-                <img src={user.photoURL} alt={user.displayName} />
-                <h2>{user.displayName}</h2>
-              </>
-            ) : (
-              <h1>Passner</h1>
-            )}
-          </header>
-          <ul className={styles.menu__navigation}>
-            <li>
-              <a>Inicio</a>
-            </li>
-            <li>
-              <a>Contacto</a>
-            </li>
-            {user && (
-              <>
-                <li>
-                  <a>Configuración</a>
-                </li>
-                <li>
-                  <a>Cerrar sesión</a>
-                </li>
-              </>
-            )}
-          </ul>
-        </>
-      )}
-    </nav>
+    <>
+      <div className={styles.hamburguer} onClick={handleMenu}>
+        <span> &#9776; Abrir menu</span>
+      </div>
+      <div id="menu" className={styles.menu}>
+        <header className={styles.menu__avatar}>
+          {user ? (
+            <>
+              <img src={user.photoURL} alt={user.displayName} />
+              <h2>{user.displayName ? user.displayName : "Desconocido"}</h2>
+            </>
+          ) : (
+            <h1>Passner</h1>
+          )}
+        </header>
+        <div className={styles.menu__links}>
+          <a href="#" onClick={handleMenu}>
+            Cerrar menu
+          </a>
+          <Link href="/">
+            <a href="#">Inicio</a>
+          </Link>
+          <Link href="/contact">
+            <a href="#">Contacto</a>
+          </Link>
+          {user && (
+            <>
+              <Link href="/dashboard">
+                <a href="#">Panel de control</a>
+              </Link>
+              <Link href="/configuration">
+                <a href="#">Configuración</a>
+              </Link>
+              <a onClick={onUserSignOut} href="#">
+                Cerrar sesión
+              </a>
+            </>
+          )}
+        </div>
+      </div>
+    </>
   )
 }
 
