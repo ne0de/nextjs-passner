@@ -1,9 +1,9 @@
-.hamburguer {
+.hamburguer{
   top: 0;
   left: 0;
   font-size: 24px;
-  padding: 1em;
-  &:hover {
+  padding: 1rem;
+  &:hover{
     cursor: pointer;
   }
 }
@@ -11,6 +11,7 @@
 .menu {
   height: 100vh;
   width: 0;
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,7 +22,7 @@
   overflow-x: hidden;
   padding-top: 80px;
   transition: 0.15s;
-
+  
   .closebtn {
     position: absolute;
     top: 0;
@@ -35,6 +36,8 @@
   padding: 2em 0.8em;
   text-align: center;
   img {
+    width: 50%;
+  height: auto;
     border-radius: 50%;
   }
 
