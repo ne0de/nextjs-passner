@@ -28,7 +28,7 @@ export default function Home() {
           </div>
           <div className={styles.home__buttons}>
             {user ? (
-              <Link href="/dashboard">
+              <Link href="/panel">
                 <button className={styles.btn}>Panel de control</button>
               </Link>
             ) : (
