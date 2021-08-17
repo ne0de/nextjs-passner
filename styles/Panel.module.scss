@@ -5,6 +5,15 @@
   align-items: center;
 }
 
+.group{
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-items: center;
+  flex-direction: column;
+  margin: 1em;
+}
+
 .modal__form{
     display: none;
     border: none;

@@ -43,17 +43,27 @@ export const addPassword = ({ password, site, info, userId, email }) => {
     })
 }
 
-export const getPasswords = (email) => {
+const mapPasswords = (doc) => {
+  const data = doc.data()
+  const id = doc.id
+  const { createdAt } = data
+
+  return {
+    ...data,
+    id,
+    createdAt: +createdAt.toDate(),
+  }
+}
+
+export const getPasswords = (email, callback) => {
   return firebase
     .firestore()
     .collection("passwords")
     .where("email", "==", email)
-    .get()
-    .then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data())
-      })
+    .onSnapshot(({ docs }) => {
+      const passwords = docs.map(mapPasswords)
+      console.log(passwords)
+      callback(passwords)
     })
 }
 

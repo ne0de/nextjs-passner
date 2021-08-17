@@ -1,10 +1,10 @@
 import styles from "../styles/Table.module.scss"
 
-const Table = () => {
+const Table = ({ id, site, createdAt, info }) => {
   return (
     <div className={styles.container}>
       <table className={styles.table}>
-        <caption className={styles.caption}>Contraseñas</caption>
+        <caption className={styles.caption}>Contraseña {id}</caption>
         <thead className={styles.thead}>
           <tr className={styles.tr}>
             <th className={styles.th} scope="col">
@@ -24,13 +24,13 @@ const Table = () => {
         <tbody>
           <tr className={styles.tr}>
             <td className={styles.td} data-label="Sitio">
-              Google.com
+              {site}
             </td>
             <td className={styles.td} data-label="Creación">
-              hace 1 dia
+              {createdAt}
             </td>
             <td className={styles.td} data-label="Información">
-              mi super contra de manu
+              {info}
             </td>
             <td className={styles.td__actions} data-label="Acciones">
               <div className={styles.actions}>

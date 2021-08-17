@@ -11,11 +11,16 @@ const Panel = () => {
   const user = useUser()
   const router = useRouter()
   const [password, setPassword] = useState("")
+  const [data, setData] = useState([])
   const [site, setSite] = useState("")
   const [info, setInfo] = useState("")
 
   useEffect(() => {
+    let unsubscribe
     user === null && router.replace("/")
+    if (user) {
+      getPasswords(user.email, setData)
+    }
   }, [user])
 
   const handleModal = (e) => {
@@ -117,11 +122,14 @@ const Panel = () => {
           </div>
           <div className={styles.group}>
             <button className="smallBtn" onClick={handleModal}>
-              Añadir contraseña
+              Agregar contraseña
             </button>
           </div>
-
-          <Table />
+          <div className={styles.group}>
+            {data.map(({ id, site, info, createdAt }) => (
+              <Table id={id} site={site} info={info} createdAt={createdAt} />
+            ))}
+          </div>
         </>
       )}
     </div>
