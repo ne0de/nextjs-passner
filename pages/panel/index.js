@@ -18,9 +18,7 @@ const Panel = () => {
   useEffect(() => {
     let unsubscribe
     user === null && router.replace("/")
-    if (user) {
-      getPasswords(user.email, setData)
-    }
+    user && getPasswords(user.email, setData)
   }, [user])
 
   const handleModal = (e) => {
@@ -46,94 +44,101 @@ const Panel = () => {
       })
   }
 
-  return (
-    <div className={styles.container}>
-      {user === undefined ? (
+  if (!user)
+    return (
+      <div className={styles.container}>
         <div className="spinner" />
-      ) : (
-        <>
-          <div id="modal" className={styles.modal__form}>
-            <div className={styles.modal__content}>
-              <div className={form_styles.containerForm}>
-                <form>
-                  <div className={form_styles.formGroup}>
-                    <label>¿De dónde proviene? (*)</label>
-                    <input
-                      onChange={(e) => setSite(e.target.value)}
-                      className={form_styles.input}
-                      type="text"
-                      required
-                      autoComplete="name"
-                    />
-                  </div>
-                  <div className={form_styles.formGroup}>
-                    <label>¿Cuál es la contraseña? (*)</label>
-                    <input
-                      onChange={(e) => setPassword(e.target.value)}
-                      className={form_styles.input}
-                      type="password"
-                      required
-                      autoComplete="password"
-                    />
-                  </div>
-                  <div className={form_styles.formGroup}>
-                    <label>Agrega información adicional (*)</label>
-                    <textarea
-                      onChange={(e) => setInfo(e.target.value)}
-                      className={form_styles.input}
-                      type="text"
-                      cols="40"
-                      rows="5"
-                      required
-                      autoComplete="text"
-                    />
-                  </div>
-                  <div className={form_styles.formGroup}>
-                    <button
-                      className="smallBtn"
-                      type="submit"
-                      onClick={handleSubmit}
-                    >
-                      Agregar
-                    </button>
-                  </div>
-                  <div className={form_styles.formGroup}>
-                    <button className="smallBtn" onClick={closeFormModal}>
-                      Cancelar
-                    </button>
-                  </div>
-                  <p>
-                    (*) Campo obligatorio
-                    <br /> Esta contraseña se encriptará en nuestra base de
-                    datos y será unicamente accesible por ti.
-                  </p>
-                </form>
+      </div>
+    )
+  else
+    return (
+      <div className={styles.container}>
+        {user === undefined ? (
+          <div className="spinner" />
+        ) : (
+          <>
+            <div id="modal" className={styles.modal__form}>
+              <div className={styles.modal__content}>
+                <div className={form_styles.containerForm}>
+                  <form>
+                    <div className={form_styles.formGroup}>
+                      <label>¿De dónde proviene? (*)</label>
+                      <input
+                        onChange={(e) => setSite(e.target.value)}
+                        className={form_styles.input}
+                        type="text"
+                        required
+                        autoComplete="name"
+                      />
+                    </div>
+                    <div className={form_styles.formGroup}>
+                      <label>¿Cuál es la contraseña? (*)</label>
+                      <input
+                        onChange={(e) => setPassword(e.target.value)}
+                        className={form_styles.input}
+                        type="password"
+                        required
+                        autoComplete="password"
+                      />
+                    </div>
+                    <div className={form_styles.formGroup}>
+                      <label>Agrega información adicional (*)</label>
+                      <textarea
+                        onChange={(e) => setInfo(e.target.value)}
+                        className={form_styles.input}
+                        type="text"
+                        cols="40"
+                        rows="5"
+                        required
+                        autoComplete="text"
+                      />
+                    </div>
+                    <div className={form_styles.formGroup}>
+                      <button
+                        className="smallBtn"
+                        type="submit"
+                        onClick={handleSubmit}
+                      >
+                        Agregar
+                      </button>
+                    </div>
+                    <div className={form_styles.formGroup}>
+                      <button className="smallBtn" onClick={closeFormModal}>
+                        Cancelar
+                      </button>
+                    </div>
+                    <p>
+                      (*) Campo obligatorio
+                      <br /> Esta contraseña se encriptará en nuestra base de
+                      datos y será unicamente accesible por ti.
+                    </p>
+                  </form>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className={styles.group}>
-            <h1 styles="title">Panel de control</h1>
-            <p>
-              Hola {!user.displayName ? "Desconocido" : user.displayName}, este
-              es tu panel de control, aquí podras gestionar todas tus
-              contraseñas.
-            </p>
-          </div>
-          <div className={styles.group}>
-            <button className="smallBtn" onClick={handleModal}>
-              Agregar contraseña
-            </button>
-          </div>
-          <div className={styles.group}>
-            {data.map(({ id, site, info, createdAt }) => (
-              <Table id={id} site={site} info={info} createdAt={createdAt} />
-            ))}
-          </div>
-        </>
-      )}
-    </div>
-  )
+            <div className={styles.group}>
+              <h1 styles="title">Panel de control</h1>
+              <p>
+                Hola {!user.displayName ? "Desconocido" : user.displayName},
+                este es tu panel de control, aquí podras gestionar todas tus
+                contraseñas.
+              </p>
+            </div>
+            <div className={styles.group}>
+              <button className="smallBtn" onClick={handleModal}>
+                Agregar contraseña
+              </button>
+            </div>
+            <div className={styles.group}>
+              {data.map(({ id, site, info, createdAt }) => (
+                <Table id={id} site={site} info={info} createdAt={createdAt} />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+    )
 }
 
 export default Panel

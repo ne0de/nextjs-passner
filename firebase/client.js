@@ -79,6 +79,15 @@ export const onUserSignOut = () => {
     })
 }
 
+export const facebookLogin = () => {
+  return firebase
+    .auth()
+    .signInWithRedirect(new firebase.auth.FacebookAuthProvider())
+    .then((e) => {
+      console.log(e)
+    })
+}
+
 export const githubLogin = () => {
   return firebase
     .auth()

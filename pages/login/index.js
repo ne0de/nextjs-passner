@@ -2,7 +2,7 @@ import styles from "../../styles/Form.module.scss"
 
 import { useEffect } from "react"
 import { useRouter } from "next/router"
-import { githubLogin } from "../../firebase/client"
+import { facebookLogin, githubLogin } from "../../firebase/client"
 
 import useUser from "../../hooks/useUser"
 
@@ -14,6 +14,11 @@ const Login = () => {
     user && router.replace("/")
   }, [user])
 
+  const handleClickFacebook = () => {
+    facebookLogin().catch((err) => {
+      console.log(err)
+    })
+  }
   const handleClickGitHub = () => {
     githubLogin().catch((err) => {
       console.log(err)
@@ -49,7 +54,7 @@ const Login = () => {
             />
           </div>
           <div className={styles.formGroup}>
-            <button className="smallBtn" type="submit">
+            <button className="smallBtn" type="submit" disabled>
               Iniciar sesión
             </button>
           </div>
@@ -62,8 +67,12 @@ const Login = () => {
               Iniciar con Github
             </button>
             <div className={styles.formGroup}>
-              <button className="smallBtn" type="button">
-                Iniciar con Google
+              <button
+                className="smallBtnFacebook"
+                type="button"
+                onClick={handleClickFacebook}
+              >
+                Iniciar con Facebook
               </button>
             </div>
             <div className={styles.formGroup}>
