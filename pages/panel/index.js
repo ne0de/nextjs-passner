@@ -107,6 +107,8 @@ const Panel = () => {
                       (*) Campo obligatorio
                       <br /> Esta contraseña se encriptará en nuestra base de
                       datos y será unicamente accesible por ti.
+                      <br />
+                      Te en cuenta que la página todavía está en desarrollo.
                     </p>
                   </form>
                 </div>
