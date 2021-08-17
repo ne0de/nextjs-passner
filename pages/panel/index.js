@@ -4,22 +4,17 @@ import Table from "../../components/Table"
 
 import useUser from "../../hooks/useUser"
 import { addPassword, getPasswords } from "../../firebase/client"
-import { useRouter } from "next/router"
 import { useEffect, useState } from "react"
 
 const Panel = () => {
   const user = useUser()
-  const router = useRouter()
   const [password, setPassword] = useState("")
   const [data, setData] = useState([])
   const [site, setSite] = useState("")
   const [info, setInfo] = useState("")
 
   useEffect(() => {
-    let unsubscribe
-    user === null && router.replace("/")
     user && getPasswords(user.email, setData)
-    return
   }, [user])
 
   const handleModal = (e) => {
@@ -133,7 +128,7 @@ const Panel = () => {
             </div>
             <div className={styles.group}>
               {data.map(({ id, site, info, createdAt }) => (
-                <Table id={id} site={site} info={info} createdAt={createdAt} />
+                <Table key={id} site={site} info={info} createdAt={createdAt} />
               ))}
             </div>
           </>

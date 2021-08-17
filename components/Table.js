@@ -1,10 +1,10 @@
 import styles from "../styles/Table.module.scss"
 
-const Table = ({ id, site, createdAt, info }) => {
+const Table = ({ key, site, createdAt, info }) => {
   return (
     <div className={styles.container}>
       <table className={styles.table}>
-        <caption className={styles.caption}>Contraseña {id}</caption>
+        <caption className={styles.caption}>Contraseña: {key}</caption>
         <thead className={styles.thead}>
           <tr className={styles.tr}>
             <th className={styles.th} scope="col">

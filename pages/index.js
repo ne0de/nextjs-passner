@@ -29,15 +29,15 @@ export default function Home() {
           <div className={styles.home__buttons}>
             {user ? (
               <Link href="/panel">
-                <button className={styles.btn}>Panel de control</button>
+                <a className={styles.btn}>Panel de control</a>
               </Link>
             ) : (
               <>
                 <Link href="/register">
-                  <button className={styles.btn}>Crear cuenta</button>
+                  <a className={styles.btn}>Crear cuenta</a>
                 </Link>
                 <Link href="/login">
-                  <button className={styles.btn}>Iniciar sesión</button>
+                  <a className={styles.btn}>Iniciar sesión</a>
                 </Link>
               </>
             )}
