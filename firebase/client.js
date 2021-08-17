@@ -29,6 +29,34 @@ export const onAuthStateChanged = (onChange, setLoading) => {
   })
 }
 
+export const addPassword = ({ password, site, info, userId, email }) => {
+  return firebase
+    .firestore()
+    .collection("passwords")
+    .add({
+      userId,
+      email,
+      password,
+      site,
+      info,
+      createdAt: firebase.firestore.Timestamp.fromDate(new Date()),
+    })
+}
+
+export const getPasswords = (email) => {
+  return firebase
+    .firestore()
+    .collection("passwords")
+    .where("email", "==", email)
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data())
+      })
+    })
+}
+
 export const onUserSignOut = () => {
   return firebase
     .auth()

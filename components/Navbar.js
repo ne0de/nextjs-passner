@@ -33,22 +33,20 @@ const Navbar = () => {
           )}
         </header>
         <div className={styles.menu__links}>
-          <a href="#" onClick={handleMenu}>
-            Cerrar menu
-          </a>
+          <a onClick={handleMenu}>Cerrar menu</a>
           <Link href="/">
-            <a href="#">Inicio</a>
+            <a>Inicio</a>
           </Link>
           <Link href="/contact">
-            <a href="#">Contacto</a>
+            <a>Contacto</a>
           </Link>
           {user && (
             <>
-              <Link href="/dashboard">
-                <a href="#">Panel de control</a>
+              <Link href="/panel">
+                <a>Panel de control</a>
               </Link>
               <Link href="/configuration">
-                <a href="#">Configuración</a>
+                <a>Configuración</a>
               </Link>
               <a onClick={onUserSignOut} href="#">
                 Cerrar sesión
