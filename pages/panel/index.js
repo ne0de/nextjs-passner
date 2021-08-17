@@ -19,6 +19,7 @@ const Panel = () => {
     let unsubscribe
     user === null && router.replace("/")
     user && getPasswords(user.email, setData)
+    return
   }, [user])
 
   const handleModal = (e) => {

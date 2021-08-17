@@ -12,6 +12,7 @@ const Login = () => {
 
   useEffect(() => {
     user && router.replace("/")
+    return
   }, [user])
 
   const handleClickFacebook = () => {
